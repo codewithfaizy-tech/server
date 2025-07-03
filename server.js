@@ -1,7 +1,7 @@
 // server.js
 const WebSocket = require('ws');
 const admin = require('firebase-admin');
-const serviceAccount = require('./serviceAccountKey.json'); // Your Firebase Admin SDK key file
+const serviceAccount = JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON); // Your Firebase Admin SDK key file
 
 // Initialize Firebase Admin SDK
 admin.initializeApp({
