@@ -90,3 +90,21 @@ wss.on('connection', (ws) => {
     console.error('WebSocket error:', err);
   });
 });
+
+function sendPushNotification(fcmToken, senderId, message) {
+  const payload = {
+      notification: {
+          title: `New message from ${senderId}`,
+          body: message
+      },
+      data: {
+          senderId: senderId,
+          message: message
+      }
+  };
+
+  admin.messaging().sendToDevice(fcmToken, payload)
+      .then(response => console.log('Notification sent:', response))
+      .catch(err => console.log(err));
+}
+
